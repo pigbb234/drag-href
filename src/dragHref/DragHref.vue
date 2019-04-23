@@ -104,7 +104,7 @@ export default {
   props: {
     initData: { type: Array }
   },
-  data() {
+  data () {
     return {
       canvasObject: {},
       parentObject: {},
@@ -135,11 +135,11 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.initComponent()
   },
   methods: {
-    initComponent() {
+    initComponent () {
       if (this.initData) {
         this.createLinkArr = Object.assign(this.createLinkArr, this.initData)
         this.createLinkArr.forEach(item => {
@@ -148,10 +148,10 @@ export default {
         })
       }
     },
-    saveData() {
+    saveData () {
       this.$emit('saveData', this.createLinkArr)
     },
-    showHrefDialog(item) {
+    showHrefDialog (item) {
       this.dialogForm = {
         title: '',
         href: '',
@@ -162,14 +162,14 @@ export default {
       }
       this.dialogVisible = true
     },
-    setHref() {
+    setHref () {
       this.currentItem.link = Object.assign({}, this.dialogForm)
       this.handleClose()
     },
-    handleClose() {
+    handleClose () {
       this.dialogVisible = false
     },
-    removeItem(id) {
+    removeItem (id) {
       this.createLinkArr.forEach((item, index) => {
         if (item.id === id) {
           this.createLinkArr.splice(index, 1)
@@ -177,7 +177,7 @@ export default {
       })
     },
     /* ===========绘制矩形方法开始=========== */
-    canvasStart(e) {
+    canvasStart (e) {
       this.drawing = true
       this.endNewBox = false
       this.drawingConfig.startPointX = e.layerX
@@ -190,7 +190,7 @@ export default {
         top: e.target.offsetTop
       }
     },
-    canvasMove(e) {
+    canvasMove (e) {
       // 绘制矩形
       if (this.drawing) {
         const { createNewBox, drawingConfig } = this
@@ -329,25 +329,25 @@ export default {
         }
       }
     },
-    canvasOver() {
+    canvasOver () {
       /* 绘画结束，设置相关bool值 */
       this.drawing = false
       this.createNewBox = false
       this.endNewBox = true
       this.changeSize = false
     },
-    canvasLeave() {
+    canvasLeave () {
       this.drawing = false
       this.changeSize = false
     },
     /* ===========绘制矩形方法结束=========== */
     /* ===========拖拽移动矩形方法开始=========== */
-    dragStart(e) {
+    dragStart (e) {
       this.moving = true
       this.movingConfig.startPointX = e.layerX
       this.movingConfig.startPointY = e.layerY
     },
-    dragMove(e, item, index) {
+    dragMove (e, item, index) {
       const x = e.layerX
       const y = e.layerY
       console.log(item.style)
@@ -402,12 +402,12 @@ export default {
         }
       }
     },
-    dragOver(e, item, index) {
+    dragOver (e, item, index) {
       this.moving = false
     },
     /* ===========拖拽移动矩形方法结束=========== */
     /* ===========拖拽改变矩形大小开始=========== */
-    changeSizeStart(e, item, direction) {
+    changeSizeStart (e, item, direction) {
       this.changeSize = true
       this.direction = direction
       this.currentItem = item
@@ -449,11 +449,11 @@ export default {
       }
     },
     // changeSizeMove冒泡到上层canvasMove
-    changeSizeOver() {
+    changeSizeOver () {
       this.changeSize = false
     },
     /* ===========拖拽改变矩形大小结束=========== */
-    getReactStyle(direction) {
+    getReactStyle (direction) {
       const item = this.currentItem
       const width = parseInt(item.style.width.slice(0, -2))
       const height = parseInt(item.style.height.slice(0, -2))
