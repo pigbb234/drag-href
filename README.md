@@ -15,4 +15,27 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+安装后引入： 
+javascript:
+
+import AreaMap from 'area-map'
+export default {
+  components: {
+    AreaMap
+  },
+  data () {
+    return {
+      hrefInitData: []
+    }
+  },
+  methods: {
+    saveHrefData (data) {
+      console.log(data)
+    }
+  }
+}
+
+模版： 
+
+<area-map @saveData="saveHrefData" :initData="hrefInitData"></area-map>
+其中 @saveData="saveHrefData" 绑定保存数据回调时间， :initData="hrefInitData" 绑定初始化热区数据
